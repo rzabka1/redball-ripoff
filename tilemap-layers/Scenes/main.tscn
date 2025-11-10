@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bja8xinxca1bf"]
+[gd_scene load_steps=12 format=3 uid="uid://bja8xinxca1bf"]
 
-[ext_resource type="PackedScene" uid="uid://7mmgep2tt00h" path="res://Levels/level_3.tscn" id="1_mcbmc"]
+[ext_resource type="PackedScene" uid="uid://7mmgep2tt00h" path="res://Levels/level_3.tscn" id="1_8gbba"]
+[ext_resource type="FontFile" uid="uid://bj5np2a660ba7" path="res://Assets/Fonts/Minecraftia-Regular.ttf" id="2_jjvhh"]
+[ext_resource type="Texture2D" uid="uid://d0dl2ju6c4tvp" path="res://Assets/Sprites/black_white_sheet.png" id="3_kry3j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hhuoe"]
 content_margin_left = 0.0
@@ -15,11 +17,27 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_21xkr"]
+atlas = ExtResource("3_kry3j")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8gbba"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jjvhh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kry3j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_21xkr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6bp64"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_344ge"]
+
 [node name="Main" type="Node2D"]
 
 [node name="Gameplay" type="Node2D" parent="."]
 
-[node name="Level3" parent="Gameplay" instance=ExtResource("1_mcbmc")]
+[node name="Level3" parent="Gameplay" instance=ExtResource("1_8gbba")]
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -41,8 +59,64 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_hhuoe")
 
 [node name="CoinsCountLabel" type="Label" parent="HUD/Control/Panel"]
 layout_mode = 0
-offset_left = 128.0
-offset_top = 8.0
-offset_right = 168.0
-offset_bottom = 31.0
+anchor_left = 0.11111111
+anchor_top = 0.0952381
+anchor_right = 0.16840278
+anchor_bottom = 1.0952381
+theme_override_fonts/font = ExtResource("2_jjvhh")
+theme_override_font_sizes/font_size = 24
 text = "0 / 3"
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="HUD/Control/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.06857639
+anchor_top = 0.023809524
+anchor_right = 0.106770836
+anchor_bottom = 0.9047619
+texture = SubResource("AtlasTexture_21xkr")
+stretch_mode = 6
+metadata/_edit_use_anchors_ = true
+
+[node name="LevelButton" type="Button" parent="HUD/Control/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4592014
+anchor_top = -0.04761905
+anchor_right = 0.5677083
+anchor_bottom = 1.1428572
+theme_override_colors/font_pressed_color = Color(0.46666667, 0.63529414, 0.9529412, 1)
+theme_override_colors/font_hover_color = Color(0.6745098, 0.9647059, 0.8117647, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.46666667, 0.63529414, 0.9529412, 1)
+theme_override_fonts/font = ExtResource("2_jjvhh")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8gbba")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_jjvhh")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_kry3j")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_21xkr")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_6bp64")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_344ge")
+text = "Level   X"
+metadata/_edit_use_anchors_ = true
+
+[node name="MenuButton" type="Button" parent="HUD/Control/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.8645833
+anchor_top = -0.04761905
+anchor_right = 0.9730903
+anchor_bottom = 1.1428572
+theme_override_colors/font_pressed_color = Color(0.46666667, 0.63529414, 0.9529412, 1)
+theme_override_colors/font_hover_color = Color(0.6745098, 0.9647059, 0.8117647, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.46666667, 0.63529414, 0.9529412, 1)
+theme_override_fonts/font = ExtResource("2_jjvhh")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8gbba")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_jjvhh")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_kry3j")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_21xkr")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_6bp64")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_344ge")
+text = "Menu"
+metadata/_edit_use_anchors_ = true
