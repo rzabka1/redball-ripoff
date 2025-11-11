@@ -23,3 +23,11 @@ func _on_player_respawn_timer_timeout() -> void:
 	var new_player = player_scene.instantiate()
 	add_child(new_player)
 	new_player.position = Global.last_checkpoint.position
+	uncollect_collectibles()
+
+func uncollect_collectibles():
+	print(Global.collected_before_checkpoint)
+	for collectible in $Collectibles.get_children():
+		if Global.collected_before_checkpoint.has(collectible):
+			collectible.uncollect()
+	Global.collected_before_checkpoint.clear()

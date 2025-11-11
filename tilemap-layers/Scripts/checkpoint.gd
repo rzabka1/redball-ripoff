@@ -20,3 +20,4 @@ func _on_body_entered(body: Node2D) -> void:
 func unlock():
 	anim.play("rise_flag")
 	Global.last_checkpoint = self
+	Global.collected_before_checkpoint.clear()

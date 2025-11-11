@@ -44,7 +44,6 @@ func die():
 	print("died")
 	$CollisionShape2D.disabled = true
 	$Sprite2D.visible = false
-	
 	var particles_node = get_parent().get_node("Particles")
 	for child in particles_node.get_children():
 		child.queue_free()
