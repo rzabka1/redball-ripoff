@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://bja8xinxca1bf"]
+[gd_scene load_steps=14 format=3 uid="uid://bja8xinxca1bf"]
 
-[ext_resource type="PackedScene" uid="uid://cyv438wkeuala" path="res://Levels/level_2.tscn" id="1_8gbba"]
+[ext_resource type="PackedScene" uid="uid://cyv438wkeuala" path="res://Levels/level_2.tscn" id="1_jjvhh"]
 [ext_resource type="FontFile" uid="uid://bj5np2a660ba7" path="res://Assets/Fonts/Minecraftia-Regular.ttf" id="2_jjvhh"]
 [ext_resource type="Texture2D" uid="uid://d0dl2ju6c4tvp" path="res://Assets/Sprites/black_white_sheet.png" id="3_kry3j"]
+[ext_resource type="Texture2D" uid="uid://ksx1ij21h8jw" path="res://icon.svg" id="4_jjvhh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hhuoe"]
 content_margin_left = 0.0
@@ -33,11 +34,14 @@ region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_344ge"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kry3j"]
+size = Vector2(189.02, 380.71)
+
 [node name="Main" type="Node2D"]
 
 [node name="Gameplay" type="Node2D" parent="."]
 
-[node name="Level2" parent="Gameplay" instance=ExtResource("1_8gbba")]
+[node name="Level2" parent="Gameplay" instance=ExtResource("1_jjvhh")]
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -51,11 +55,12 @@ grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="HUD/Control"]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = -1
 anchor_right = 1.0
-offset_bottom = 42.0
+anchor_bottom = 0.06481481
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_hhuoe")
+metadata/_edit_use_anchors_ = true
 
 [node name="CoinsCountLabel" type="Label" parent="HUD/Control/Panel"]
 layout_mode = 0
@@ -120,3 +125,57 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_6bp64")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_344ge")
 text = "Menu"
 metadata/_edit_use_anchors_ = true
+
+[node name="Control" type="Control" parent="HUD/Control"]
+layout_mode = 1
+anchor_left = 0.072
+anchor_top = 0.886
+anchor_right = 0.072
+anchor_bottom = 0.886
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="TouchLeft" type="TouchScreenButton" parent="HUD/Control/Control"]
+position = Vector2(-47.944, -76.12799)
+texture_normal = ExtResource("4_jjvhh")
+texture_pressed = ExtResource("4_jjvhh")
+shape = SubResource("RectangleShape2D_kry3j")
+passby_press = true
+action = "Left"
+
+[node name="Control2" type="Control" parent="HUD/Control"]
+layout_mode = 1
+anchor_left = 0.198
+anchor_top = 0.886
+anchor_right = 0.198
+anchor_bottom = 0.886
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="TouchRight" type="TouchScreenButton" parent="HUD/Control/Control2"]
+position = Vector2(-57.095993, -76.12799)
+texture_normal = ExtResource("4_jjvhh")
+texture_pressed = ExtResource("4_jjvhh")
+shape = SubResource("RectangleShape2D_kry3j")
+passby_press = true
+action = "Right"
+
+[node name="Control3" type="Control" parent="HUD/Control"]
+layout_mode = 1
+anchor_left = 0.882
+anchor_top = 0.886
+anchor_right = 0.882
+anchor_bottom = 0.886
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="TouchJump" type="TouchScreenButton" parent="HUD/Control/Control3"]
+position = Vector2(-45.064026, -76.12799)
+texture_normal = ExtResource("4_jjvhh")
+texture_pressed = ExtResource("4_jjvhh")
+shape = SubResource("RectangleShape2D_kry3j")
+passby_press = true
+action = "Jump"

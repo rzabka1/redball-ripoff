@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=4 uid="uid://7mmgep2tt00h"]
+[gd_scene load_steps=9 format=4 uid="uid://7mmgep2tt00h"]
 
 [ext_resource type="Script" uid="uid://cxexvxv33v6v6" path="res://Scripts/level.gd" id="1_di31f"]
 [ext_resource type="Texture2D" uid="uid://d0dl2ju6c4tvp" path="res://Assets/Sprites/black_white_sheet.png" id="2_nw0dw"]
 [ext_resource type="Script" uid="uid://ch7u0speyg7u6" path="res://Scripts/collectible.gd" id="3_he40u"]
 [ext_resource type="PackedScene" uid="uid://b1o6ix8okpgb3" path="res://Scenes/rigid_player.tscn" id="4_1ohfy"]
 [ext_resource type="FontFile" uid="uid://bj5np2a660ba7" path="res://Assets/Fonts/Minecraftia-Regular.ttf" id="5_nw0dw"]
+[ext_resource type="PackedScene" uid="uid://cjtsmoogealy7" path="res://Scenes/checkpoint.tscn" id="6_uwxw1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4w8uu"]
 texture = ExtResource("2_nw0dw")
@@ -17,6 +18,7 @@ texture_region_size = Vector2i(32, 32)
 2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, 16, -16, 16)
 0:1/0 = 0
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -6.0539837, 16, -6.372616, 16, 16, -16, 16)
+0:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 1:1/0 = 0
 1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, 16, 16, -16)
 2:1/0 = 0
@@ -38,6 +40,7 @@ texture_region_size = Vector2i(32, 32)
 [sub_resource type="TileSet" id="TileSet_7mb4h"]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
+physics_layer_1/collision_layer = 2
 sources/0 = SubResource("TileSetAtlasSource_4w8uu")
 
 [node name="Level3" type="Node2D"]
@@ -71,6 +74,8 @@ position = Vector2(1183, 404)
 script = ExtResource("3_he40u")
 metadata/_custom_type_script = "uid://ch7u0speyg7u6"
 
+[node name="Particles" type="Node2D" parent="."]
+
 [node name="RigidPlayer" parent="." instance=ExtResource("4_1ohfy")]
 
 [node name="LevelNameLabel" type="Label" parent="."]
@@ -84,3 +89,18 @@ theme_override_font_sizes/font_size = 32
 text = "#3
 Slopes"
 horizontal_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_enabled = false
+limit_left = -500
+limit_bottom = 700
+position_smoothing_enabled = true
+
+[node name="PlayerRespawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Checkpoint" parent="." instance=ExtResource("6_uwxw1")]
+position = Vector2(-1, 105)
+
+[connection signal="timeout" from="PlayerRespawnTimer" to="." method="_on_player_respawn_timer_timeout"]
