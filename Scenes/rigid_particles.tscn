@@ -16,7 +16,7 @@ constant_torque = -0.205
 scale = Vector2(2, 2)
 texture = ExtResource("1_geto1")
 region_enabled = true
-region_rect = Rect2(192, 64, 32, 32)
+region_rect = Rect2(64, 64, 32, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_geto1")

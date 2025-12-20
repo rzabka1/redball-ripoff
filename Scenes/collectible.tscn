@@ -7,20 +7,11 @@
 [node name="Collectible" type="Area2D"]
 script = ExtResource("1_dr5cb")
 
-[node name="CoinTex" type="Sprite2D" parent="."]
+[node name="Texture" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
 texture = ExtResource("2_73jte")
 region_enabled = true
-region_rect = Rect2(0, 64, 32, 32)
-
-[node name="CloudTex" type="Sprite2D" parent="."]
-visible = false
-scale = Vector2(2, 2)
-texture = ExtResource("2_73jte")
-region_enabled = true
-region_rect = Rect2(64, 64, 32, 32)
+region_rect = Rect2(96, 32, 32, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = ExtResource("3_73jte")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]

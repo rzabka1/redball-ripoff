@@ -1,9 +1,6 @@
 class_name Checkpoint
 extends Area2D
 
-@onready var anim:AnimationPlayer = $AnimationPlayer
-
-
 enum states {LOCKED = 0, UNLOCKED = 1}
 
 @export var state:states:
@@ -11,7 +8,7 @@ enum states {LOCKED = 0, UNLOCKED = 1}
 		if new_state != state:
 			state = new_state
 			unlock()
-
+@onready var anim:AnimationPlayer = $AnimationPlayer
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is RigidBody2D and body.has_method("die"):
