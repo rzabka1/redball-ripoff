@@ -1,3 +1,4 @@
+class_name Level
 extends Node2D
 
 var player:RigidBody2D
@@ -7,6 +8,7 @@ var player:RigidBody2D
 @onready var collectibles_parent:Node2D = $Collectibles
 
 func _ready() -> void:
+	Global.all_collectibles = collectibles_parent.get_children()
 	Global.set_max_coins()
 
 func _process(_delta: float) -> void:

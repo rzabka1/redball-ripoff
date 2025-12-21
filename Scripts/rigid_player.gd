@@ -1,20 +1,21 @@
+class_name Player
 extends RigidBody2D
 
-var angle # cannot assign type, cause sometimes this has to be a float value, and sometimes null.
+var angle:float = NAN # using NAN, because when using null, type cannot be declared as a float
 var jump_velocity:int = -40000
-
 @onready var raycast:RayCast2D = $RayCast2D
 @onready var collision:CollisionShape2D = $CollisionShape2D
 @onready var sprite:Sprite2D = $Sprite2D
+@onready var particle_scene = preload("res://Scenes/rigid_particles.tscn")
 
 func _ready() -> void:
 	introduce_yourself_to_level()
 
 func introduce_yourself_to_level():
-	if get_parent().get_script().resource_path.ends_with("level.gd"):
+	if get_parent() is Level:
 		get_parent().player = self
 	else:
-		printerr("rigid_player.gd: Invalid player-to-Level path. Check the tree or level script name!")
+		printerr("rigid_player.gd: Invalid player-to-Level path. Check the tree!")
 		breakpoint
 
 func _physics_process(_delta: float) -> void:
@@ -26,7 +27,7 @@ func handle_movement() -> void:
 	var direction:float = Input.get_axis("Left", "Right")
 	var speed:float = 500
 	if direction:
-		if angle != null and abs(angle) < 75:
+		if angle != NAN and abs(angle) < 75:
 			if direction < 0:
 				speed += angle * 30
 			elif direction > 0:
@@ -36,7 +37,7 @@ func handle_movement() -> void:
 		apply_central_force(Vector2(direction*speed,0))
 
 func handle_jump() -> void:
-	if Input.is_action_just_pressed("Jump") and angle != null and abs(angle) < 75:
+	if Input.is_action_just_pressed("Jump") and angle != NAN and abs(angle) < 75:
 			apply_central_force(Vector2(0, jump_velocity))
 
 func _integrate_forces(_state: PhysicsDirectBodyState2D) -> void:
@@ -44,7 +45,7 @@ func _integrate_forces(_state: PhysicsDirectBodyState2D) -> void:
 	if _contacted.size() > 0:
 		handle_angle_to_surface_relation(_state)
 	else:
-		angle = null
+		angle = NAN
 
 func handle_angle_to_surface_relation(_state: PhysicsDirectBodyState2D) -> void:
 	if _state.get_contact_count() > 1:
@@ -79,7 +80,7 @@ func set_up_particles():
 func create_particles(parent):
 	var particle_count:int = 10
 	for i in particle_count:
-		var particle:Node = load("res://Scenes/rigid_particles.tscn").instantiate()
+		var particle:Node = particle_scene.instantiate()
 		parent.call_deferred("add_child", particle)
 		particle.position.x = randf_range(0,6)
 		particle.position.y = randf_range(-6,0)
