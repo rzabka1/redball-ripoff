@@ -48,9 +48,9 @@ func get_all_flags() -> Array:
 func set_level_color():
 	if get_all_checkpoints().size() == get_all_flags().size():
 		for i in get_all_checkpoints().size():
-			var level_color_arr = ColorLib.pick_level_color()
-			get_all_checkpoints()[i].modulate = level_color_arr[1]
-			get_all_flags()[i].modulate = level_color_arr[1]
+			var flag_color = ColorLib.pick_level_color()
+			get_all_checkpoints()[i].modulate = flag_color
+			get_all_flags()[i].modulate = flag_color
 
 func introduce_yourself_to_checkpoints(all_checkpoints_including_start:Array):
 	for checkpoint in all_checkpoints_including_start:
